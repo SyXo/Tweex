@@ -1,0 +1,134 @@
+#
+# nxdomains
+#
+
+
+# -- * --
+#
+.3lift.com
+.4dsply.com
+
+# -- A --
+adadvisor.net
+log-sj.adap.tv
+sync.adap.tv
+.adaptv.advertising.com
+pixel.adblade.com
+staticd.cdn.adblade.com
+pool.adbrain.iponweb.net
+sp.adbrn.com
+.adcom.akadns.net
+pool.adizio.iponweb.net
+pool.admedo.com
+.ib.adnxs.com
+mob.adnxs.com
+.anycast.adnxs.com
+secure.adpay.com
+adrta.com
+cotads.adscale.de
+match.adsrvr.org
+cdn.adsrv247.com
+adsynth-pixel-548573282.us-east-1.elb.amazonaws.com
+engine.adzerk.net
+
+# -- B --
+c.betrad.com
+bounceexchange.com
+
+# -- C --
+dsum.casalemedia.com
+adsapi.chartbeat.com
+edge01.chartbeat.net
+ping.chartbeat.net
+static.chartbeat.com
+clicktale.net
+criteo.com
+.crwdcntrl.net
+
+# -- D --
+dpm.demdex.net
+ad.doubleclick.net
+static.doubleclick.net
+.g.doubleclick.net
+.l.doubleclick.net
+pagead46.l.doubleclick.net
+
+# -- G --
+cdn.gigya.com
+www-google-analytics.l.google.com
+www.googleadservices.com
+pagead2.googlesyndication.com
+tpc.googlesyndication.com
+www.googletagmanager.com
+# rma-api.gravity.com
+
+# -- M --
+js.moatads.com
+pixel.moatads.com
+s.moatads.com
+
+# -- N --
+analytics.newsinc.com
+
+# -- O --
+us-u.openx.net
+prod-mkt-d.d.xx.openx.com.akadns.net
+
+# -- P --
+widget.perfectmarket.com
+widget.perfectmarket.com.cdngc.net
+metrics.premiereinteractive.com
+ads.pubmatic.com
+
+# -- Q --
+edge.quantserve.com
+pixel.quantserve.com
+px-lax007.quantserve.com.akadns.net
+
+# -- R --
+a.rfihub.com
+a-tm.rfihub.com
+p.rfihub.com
+pixel.rubiconproject.net.akadns.net
+
+# -- S --
+horizon-nj1.sailthru.com
+b.scorecard.com
+sb.scorecardresearch.com
+b.scorecardresearch.com.edgesuite.net
+native.sharethrough.com
+b.sharethrough.com
+btlr.sharethrough.com
+static.sharethrough.com
+edge.simplereach.com
+pha.sitescoutadserver.com
+cdn2sitescout.edgesuite.net
+rtb-csync.smartadserver.com
+tmk.smartadserver.com
+api.solvemedia.com
+sync.search.spotxchange.com
+c.statcounter.com
+delivery.swid.switchads.com
+
+# -- T --
+.taboola.com
+#api.taboola.com
+#images.taboola.com
+#wildcard.taboola.com
+pixel.tapad.com
+tapestry.tapad.com
+str-tracktastic-1029745156.us-east-1.elb.amazonaws.com
+cdn.teads.tv
+
+# -- Y --
+ads.yahoo.com
+pixel.yabidos.com
+
+# -- Z --
+z1.zedo.com
+c5.zedo.com
+c5.zedo.com.edgesuite.net
+
+
+
+
