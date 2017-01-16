@@ -1,0 +1,97 @@
+
+Developing few shell functions that ease up my daily linux experience. Add these to ~/.bashrc and execute bashrc to use them ( . ~/.bashrc)
+
+1. Android repo sync
+Usage - syncc
+function syncc()
+{
+time repo sync --force-broken --force-sync --no-clone-bundle --quiet --current-branch "$@"
+}
+
+2. Youtube to mp3 download
+Usage - download <youtube url>
+function download()
+{
+youtube-dl -x --audio-format mp3 "$@"
+}
+
+3. My favourite .. grep for stuff recursively, ignoring the case and also hidden directories
+Usage - mygrep <string>
+function mygrep()
+{
+grep -i -r --exclude-dir=".*" "$@"
+}
+
+4. Find a running process
+Usage - process <process name>
+function process()
+{
+ps aux | grep "$@"
+}
+More to come.. making them as need comes up!
+
+5. Set java_home to jdk7
+function java7()
+{
+export JAVA_HOME=/usr/lib/jvm/java-7-openjdk-amd64/
+}
+
+6. Set java_home to jdk8
+function java8()
+{
+export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/
+}
+
+7. Know thy battery
+function batinfo()
+{
+upower -i /org/freedesktop/UPower/devices/battery_BAT0
+}
+
+8. Aapt dump of apk resources
+Usage - reslist Settings.apk
+function reslist()
+{
+aapt dump --values resources "$@"
+}
+
+9. Cherry-pick easily
+function pick()
+{
+# for cherry-pick --continue
+if [[ "$#" -eq 0 ]]; then
+git add -A && git cherry-pick --continue && mygrep ">>>>>"
+# for cherry-pick one commit
+else
+git cherry-pick $@
+fi
+}
+
+10. Reset wifi
+function modwifi() {
+sudo modprobe -r rtl8723be && sudo modprobe rtl8723be
+}
+
+11. Increase jack heap
+function heapify() {
+JACK_SERVER_VM_ARGUMENTS="-Dfile.encoding=UTF-8 -XX:+TieredCompilation -Xmx"$@"g"
+./prebuilts/sdk/tools/jack-admin kill-server
+./prebuilts/sdk/tools/jack-admin start-server
+}
+
+12. Find duplicate entries in an android xml file
+function duplicate() {
+gawk  -F '"'  '/name=/ { print $2 }' $@  | sort | uniq -d
+}
+
+13. Find updated entries in an android xml file
+function whatsnew() {
+ comm -13 <(gawk  -F '"'  '/name=/ { print $2 }' "$1" | sort) <( gawk  -F '"'  '/name=/ { print $2 }' "$2" | sort)
+}
+
+14. Remove dpkg lock
+function unlock() {
+sudo rm /var/lib/apt/lists/lock
+sudo rm /var/cache/apt/archives/lock
+sudo dpkg --configure -a
+}
