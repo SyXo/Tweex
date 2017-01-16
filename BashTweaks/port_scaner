@@ -1,0 +1,6 @@
+#!/bin/bash
+# Порт передается первым аргументом
+declare -a scanlist=`nmap -sn 10.16.10.0/24 | grep 'Nmap' | awk -F'[: ]+' '{ print $5 }' | grep '10.'`
+for i in $scanlist; do
+	netcat -w 1 -n -v -z $i $1
+done

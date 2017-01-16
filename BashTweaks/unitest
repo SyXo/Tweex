@@ -1,0 +1,5 @@
+#!/bin/bash
+
+DISPLAY=:0 notify-send -t 2000 -i emblem-ubuntuone-updating "Unison" "Sync in progress."
+unison x7 && if tail ~/.unison/unison.log -n1 | grep 'complete' ; then DISPLAY=:0 notify-send -t 12000 -i emblem-ubuntuone-updating "Unison" "Sync Complete"; else DISPLAY=:0 notify-send -t 10000 -i important "Unison" "`tail ~/.unison/unison.log -n7`"; fi
+read w
