@@ -1,0 +1,21 @@
+/* --------------TAB TEXT CENTERED----------------------- */
+	.tab-text{
+		text-align: center !important;
+	}
+
+/* --------------REMOVE FAVICONS----------------------- */
+	#personal-bookmarks .toolbarbutton-icon {
+		display:none!important;
+	}
+	.tabbrowser-tab .tab-icon-image {
+		display:none!important;
+	}
+
+/* --------------SCROLLBAR REMOVAL----------------------- */
+/* This completely removes all scrollbars in firefox */ 
+	/* AGENT_SHEET */
+	@namespace url(http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul);
+
+	scrollbar {
+		visibility:collapse !important; 
+  }
