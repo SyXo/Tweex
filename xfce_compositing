@@ -1,0 +1,2 @@
+xfconf-query --channel=xfwm4 --property=/general/use_compositing --type=bool --toggle # Включает и выключает
+xfconf-query -c xfwm4 -p /general/use_compositing -t bool -s false # Только выключает
