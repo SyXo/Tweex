@@ -1,0 +1,25 @@
+#!/bin/bash
+
+echo " Enter file size in Mb :"
+read file_size
+
+echo " Enter file count"
+read file_count
+
+#file_size=1024
+#file_count=64
+
+created_count=0
+let "file_size=10**3"
+
+echo "Filesize is $file_size"
+for i in `seq 1 $file_count`
+do
+  created_count=$(($created_count++1))
+  dd if=/dev/urandom of=counter_$i bs=$file_size count=10 
+#  head -c $file_size /dev/urandom > share_$i
+done
+
+echo ""
+echo "Created [ $created_count ] files."
+echo ""

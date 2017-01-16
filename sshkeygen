@@ -1,0 +1,108 @@
+#!/bin/bash
+
+# Config for every value of the script
+RED=$(tput setaf 1)
+GRN=$(tput setaf 2)
+YLW=$(tput setaf 3)
+BL=$(tput setaf 4)
+
+REDB=$(tput setaf 1)$(tput bold)
+GRNB=$(tput setaf 2)$(tput bold)
+YLWB=$(tput setaf 3)$(tput bold)
+BLB=$(tput setaf 4)$(tput bold)
+BOLD=$(tput bold)
+NRML=$(tput sgr0)
+
+grn_a="${GRNB}*${NRML}"
+red_a="${REDB}*${NRML}"
+bl_a="${BLB}*${NRML}"
+ok="$GRNB""[ OK ]""$NRML"
+fail="$REDB""[ FAIL] ""$NRML"
+
+
+# Colored output,
+colored_msg() {
+    MSG="$1"
+#    let COL=$(tput cols)-$MSG+$GRNB+$NRML
+    let COL=$(tput cols)
+    printf "%s%${COL}s\n" "$GRNB[OK]$NRML" "$MSG"
+}
+
+center(){
+  textsize=${#1}
+  width=$(tput cols)
+  span=$((($width + $textsize) / 2))
+  printf "%${span}s\n" "$1"
+  }
+
+ssh_config="$HOME/.ssh/config"
+
+printf "%1s${BOLD}Generates ssh key and transfers it to remote server.${NRML}\n\n"
+
+printf "%1s${BOLD}Enter server name alias: ${NRML}${GRNB}"
+read key
+printf "$NRML"
+
+printf "%1s${BOLD}Enter server ip or domain: ${NRML}${GRNB}"
+read server
+printf "$NRML"
+
+printf "%1s${BOLD}Enter server port(default 22): ${NRML}${GRNB}"
+read port
+printf "$NRML"
+#re='^[0-9]+$'
+if [ "$port" = "" ]; then
+  port="22"
+  printf "DEFAULT [ $port ]\n"
+else
+  printf "PORT IS [ $port ]\n"
+fi
+
+printf "%1s${BOLD}Checking server connection: ${NRML}"
+access=$(nmap $server -PN -p $port ssh 2>/dev/null | egrep 'open|closed|filtered' | awk '{ print $2 }')
+if [[ "$access" = open ]]; then
+  printf "%0s${GRNB}OK${NRML}\n"
+else
+  printf "%0s${REDB}FAIL${NRML}\n"
+  exit 1
+fi
+
+printf "%1s${BOLD}Generating key: ${NRML}"
+ssh-keygen -t rsa -b 4096 -C "$USER" -f $HOME/.ssh/$key -P '' > /dev/null 2>&1;
+if [ -f "$HOME/.ssh/$key" ]; then
+  printf "%0s${GRNB}OK${NRML}\n"
+else
+  printf "%0s${REDB}FAIL. KEY HAS NOT BEED GENERATED. EXIT.${NRML}\n"
+  exit 1
+fi
+
+printf "%1s${BOLD}Copying key to the server: ${NRML}\n"
+
+ssh-copy-id -i $HOME/.ssh/${key}.pub ${server} > /dev/null 2>&1;
+#ssh-copy-id -p $port -i $HOME/.ssh/${key}.pub ${server} > /dev/null 2>&1;
+#proof=$(ssh $server "ls ~/.ssh/${key} | xargs -0 basename")
+#if [[ "$proof" = $key ]]; then
+#  printf "%0s${GRNB}OK${NRML}\n"
+#else
+#  printf "%0s${REDB}FAIL. KEY HAS NOT BEEN COPYED TO THE $server:$port. EXIT.${NRML}\n"
+#  exit 1
+#fi
+
+if [ ! -d "$HOME/.ssh/pub" ]; then
+  mkdir ~/.ssh/pub
+fi
+
+mv $HOME/.ssh/${key}.pub $HOME/.ssh/pub/
+#printf "%1s${BOLD}Enter hostname to use: ${NRML}${GRNB}"
+#read host_name
+host_name=$key
+printf "${NRML}"
+printf "Host $host_name\n" >> $ssh_config
+printf "%2sHostname $server\n" >> $ssh_config
+if ! [ "$port" = 22 ]; then
+printf "%2sPort $port\n" >> $ssh_config
+fi
+printf "  PasswordAuthentication no\n" >> $ssh_config
+printf "%2sIdentityFile $HOME/.ssh/$key\n\n" >> $ssh_config
+printf "\n%1s${BOLD}Key${NRML} ${GRNB}[${NRML} $key ${GRNB}]${NRML} with ${GRNB}[${NRML} $host_name ${GRNB}]${NRML} ${BOLD}ssh's hostname has been created and added to ${ssh_config}.${NRML}\n"
+exit 0
