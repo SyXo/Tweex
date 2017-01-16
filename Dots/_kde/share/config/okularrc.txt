@@ -1,0 +1,24 @@
+[Desktop Entry]
+FullScreen=false
+
+[KFileDialog Settings]
+Height 1080=515
+Height 768=450
+Recent Files[$e]=the_darktower_1-the_gunsling.azw3,$HOME/Dropbox/repos/beeryardtech/beeryardtech.github.io/_site/resume/resume_site.pdf
+Recent URLs[$e]=$HOME/Downloads/,$HOME/Dropbox/ebooks/,$HOME/Dropbox/repos/beeryardtech/beeryardtech.github.io/_site/resume/
+Width 1366=720
+Width 1920=960
+
+[MainWindow]
+Height 768=769
+State=AAAA/wAAAAD9AAAAAAAABQAAAAKVAAAABAAAAAQAAAAIAAAACPwAAAABAAAAAgAAAAEAAAAWAG0AYQBpAG4AVABvAG8AbABCAGEAcgEAAAAA/////wAAAAAAAAAA
+ToolBarsMovable=Disabled
+Width 1366=1367
+
+[Recent Files]
+File1[$e]=zip:/home/tgoldie/tmp/w2_Travis_Goldie_2015.zip/w2_Travis_Goldie_2015.pdf
+File2[$e]=$HOME/tmp/list.pdf
+File3[$d]
+Name1[$e]=w2_Travis_Goldie_2015.pdf
+Name2[$e]=list.pdf
+Name3[$d]

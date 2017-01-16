@@ -1,0 +1,106 @@
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vim: ft=vim
+" Author: Travis Goldie
+" Date: January 2012
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""" Core
+syntax on
+set syntax=on
+set background=dark
+set completeopt=longest,menuone
+set autoread
+
+" Set tabs and spaces handling
+set shiftwidth=4
+set tabstop=4
+set expandtab
+
+" Add Mouse Support
+set mouse=nicr
+set mousemodel=popup_setpos
+
+" Enable modeline
+set modeline
+
+syntax enable
+
+" Turn on line numbers, set to width, and set color of the line numbers
+set number
+set numberwidth=2
+highlight LineNr ctermfg=Blue
+
+" set ignorecase smartcase, case-insensitive searching
+set ignorecase
+
+" Performance improvements
+set ttyfast " got a fast terminal
+set ttyscroll=3
+set lazyredraw " to avoid scrolling problems
+
+" Timeout is to tell difference between Meta encoding and hitting 2 keys
+set timeout
+set timeoutlen=3000
+set ttimeoutlen=100
+
+" Makes backspace work more natually
+fixdel
+set backspace=indent,eol,start
+
+" Turn it off by default.
+set iminsert=0
+
+" Enable internal version of matchit
+runtime! macros/matchit.vim
+
+" where to put backup files
+"set backupdir=$VIMBACKUP_HOST
+
+" directory to place swap files in
+"set directory=$VIMBACKUP_HOST
+set nobackup
+
+"""" Map Keys
+inoremap jj <Esc>
+noremap ; :
+
+verbose xnoremap <leader>p "_dP
+
+" Move by row rather than line. Useful for wrapped lines.
+nnoremap j gj
+nnoremap k gk
+
+
+"""" Search
+" Jumping lands on top or bottom of screen
+verbose nnoremap n nzz
+verbose nnoremap } }zz
+set incsearch
+
+
+"""" Status Line
+set statusline=%9* " File type
+set statusline+=\ %y " File type
+set statusline+=\ (%P) " Percent of file
+set statusline+=\ %c "Current Column
+set statusline+=\:(\%l\/\%L) " Current line number / Total Lines
+set statusline+=\ %F " Full file path
+set statusline+=\ %m%=%{fugitive#statusline()} " Is file modified
+
+" always show the status line
+set laststatus=2
+
+" Show some context while scrolling
+set scrolloff=5
+
+"""" Tab Pages (window tabs) and Viewports
+" Setting for tabline
+set switchbuf=usetab
+set showtabline=2
+set tabpagemax=20
+
+" Split buffer open to the bottom by default
+set splitbelow
+
+" When window open, make it equal size
+set equalalways
+

@@ -1,0 +1,233 @@
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vim:ft=vim:
+" Author: Travis Goldie
+" Date: January 2012
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""" Core
+syntax on
+set syntax=on
+set background=dark
+set completeopt=longest,menuone
+set autoread
+
+" Set tabs and spaces handling
+set shiftwidth=4
+set tabstop=4
+set expandtab
+
+" Add Mouse Support
+set mouse=nicr
+set mousemodel=popup_setpos
+
+" Enable modeline
+set modeline
+
+syntax enable
+
+" Turn on line numbers, set to width, and set color of the line numbers
+set number
+set numberwidth=2
+highlight LineNr ctermfg=Blue
+
+" set ignorecase smartcase, case-insensitive searching
+set ignorecase
+
+" Fix to get Alt key shortcut to work. Maps Escape chars
+" to their Alt combinations. For uppercase letters do the
+" same except use 'Z'.
+let myChar='a'
+while myChar <= 'z'
+    exec "set <A-".myChar.">=\e".myChar
+    exec "imap \e".myChar." <A-".myChar.">"
+    let myChar = nr2char(1 + char2nr(myChar))
+endw
+
+" Performance improvements
+set ttyfast " got a fast terminal
+set ttyscroll=3
+set lazyredraw " to avoid scrolling problems
+
+" Timeout is to tell difference between Meta encoding and hitting 2 keys
+set timeout
+set timeoutlen=3000
+set ttimeoutlen=100
+
+" Makes backspace work more natually
+fixdel
+set backspace=indent,eol,start
+
+" Turn it off by default.
+set iminsert=0
+
+" Enable internal version of matchit
+runtime! macros/matchit.vim
+
+"""" Import External Config Files
+" XXX Plugins should always be sourced in first
+source ~/.vimrc.plugins
+" XXX Done with Plugins
+
+source ~/.vimrc.config
+source ~/.vimrc.funcs
+source ~/.vimrc.js
+source ~/.vimrc.python
+source ~/.vimrc.task
+
+
+"""" Files
+" Auto set working dir to current file
+set autochdir
+
+" An alternative to the option
+autocmd BufEnter * silent! lcd %:p:h
+
+" Handle using vim on MS Windows
+if has("win32") || has("win16")
+    let $VIMBACKUP='c:\Users\tgoldie\Dropbox\shared\backup\vimbackup'
+    let $VIMBACKUP_HOST='c:\Users\tgoldie\Dropbox\shared\backup\vimbackup'
+endif
+
+"Check to see if backup dirs exists.
+if !isdirectory( "$VIMBACKUP" )
+	:silent !mkdir -p $VIMBACKUP >/dev/null 2>&1
+endif
+
+if !isdirectory( "$VIMBACKUP_HOST" )
+	:silent !mkdir -p $VIMBACKUP_HOST >/dev/null 2>&1
+endif
+
+" where to put backup files
+set backupdir=$VIMBACKUP_HOST
+
+" directory to place swap files in
+set directory=$VIMBACKUP_HOST
+set backup
+
+" share system clipboard by default
+set clipboard=unnamedplus
+
+" support both, in this order
+set fileformats=unix,dos
+
+
+"""" Map Keys
+inoremap jj <Esc>
+noremap ; :
+
+" Save using ctrl-S. WOOT! If in insert mode return to it.
+nnoremap <C-s> :<C-u>Update<CR>
+inoremap <C-s> <Esc>:Update<CR>
+
+" Make diffs easier
+verbose map <C-Up> [c
+verbose map <C-Down> ]c
+
+" Search in current file for token under cursor, and open quickWindow
+verbose nmap K :Ggrep <cword><CR>
+verbose nmap <C-k> :Ggrep <cword> %<CR>
+
+" Switch between tabs quickly
+verbose nnoremap <A-1> 1gt
+verbose nnoremap <A-2> 2gt
+verbose nnoremap <A-3> 3gt
+verbose nnoremap <A-4> 4gt
+verbose nnoremap <A-5> 5gt
+verbose nnoremap <A-6> 6gt
+verbose nnoremap <A-7> 7gt
+verbose nnoremap <A-8> 8gt
+verbose nnoremap <A-9> 9gt
+verbose nnoremap <A-0> 10gt
+
+""""" Syntax
+highlight Visual term=reverse cterm=reverse guibg=#592929
+
+
+"""" Folding
+set foldenable " Turn on folding
+set foldmethod=syntax
+set foldlevel=12
+
+" What movements open folds
+set foldopen=block,hor,mark,percent,quickfix,tag
+
+
+"""" Enable omni completion.
+" Autocompleting tags - http://tdewolf.blogspot.com/2013/05/the-mighty-vim.html
+autocmd FileType c setlocal omnifunc=ccomplete#Complete
+autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP
+autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+autocmd FileType vim setlocal omnifunc=vimcomplete#CompleteTags
+autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+
+
+"""" Movement
+" Move by row rather than line. Useful for wrapped lines.
+nnoremap j gj
+nnoremap k gk
+
+" In select mode, use \p to paste over selected text
+" without loosing what is in registr
+verbose xnoremap <leader>p "_dP
+
+" <space> now works like a browser
+"nnoremap <space> <C-d>
+nnoremap <Space> <PageDown>
+noremap <M-space> <PageUp>
+
+" Move around windows
+verbose nmap <C-h> <C-w>h
+verbose nmap <C-j> <C-w>j
+verbose nmap <C-k> <C-w>k
+verbose nmap <C-l> <C-w>l
+
+
+"""" Search
+" Jumping lands on top or bottom of screen
+verbose nnoremap n nzz
+verbose nnoremap } }zz
+set incsearch
+
+"""" Status Line
+set statusline=%9* " File type
+set statusline+=\ %y " File type
+set statusline+=\ (%P) " Percent of file
+set statusline+=\ %c "Current Column
+set statusline+=\:(\%l\/\%L) " Current line number / Total Lines
+set statusline+=\ %F " Full file path
+set statusline+=\ %m%=%{fugitive#statusline()} " Is file modified
+set statusline+=\ %{SyntasticStatuslineFlag()}
+
+" always show the status line
+set laststatus=2
+
+" Show some context while scrolling
+set scrolloff=5
+
+"""" Tab Pages (window tabs) and Viewports
+" Setting for tabline
+set switchbuf=usetab
+set showtabline=2
+set tabpagemax=20
+
+" Split buffer open to the bottom by default
+set splitbelow
+
+" When window open, make it equal size
+set equalalways
+
+" Change tabs in either normal or insert mode
+verbose noremap <A-left>   :tabp<cr>
+verbose noremap <A-h>  :tabp<cr>
+verbose imap <A-left>  <Esc>:tabp<cr>
+verbose imap <A-h> <Esc>:tabp<cr>
+
+verbose noremap <A-right>  :tabn<cr>
+verbose noremap <A-l>  :tabn<cr>
+verbose imap <A-right>  <Esc>:tabn<cr>
+verbose imap <A-l> <Esc>:tabn<cr>
+
+verbose map <A-]> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
+verbose map <C-}> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>

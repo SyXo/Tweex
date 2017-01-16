@@ -1,0 +1,221 @@
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vim: ft=vim
+" Author: Travis Goldie
+" Description: Configuration for various VIM plugins and extensions
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""" Auto-Pairs
+" Note: Check if working with ":imap ("
+"" Settings
+"let g:AutoPairsShortcutToggle
+"let g:AutoPairsShortcutFastWrap
+"let g:AutoPairsShortcutJump
+"let g:AutoPairsMapBS
+"let g:AutoPairsMapCR
+"let g:AutoPairsCenterLine
+
+"When g:AutoPairsMapCR is on, center current line after return if the line is at the bottom 1/3 of the window.
+"let g:AutoPairsMapSpace
+"let g:AutoPairsFlyMode = 0
+"let g:AutoPairsShortcutBackInsert
+
+"""" AngularJS
+"" See .vimrc.js
+
+
+"""" DelimitMate - Autoclose quotes, parenthesis, brackets, etc
+"" Settings
+"let g:loaded_delimitMate
+"let g:delimitMate_autoclose
+"let g:delimitMate_matchpairs
+"let g:delimitMate_quotes
+"let g:delimitMate_nesting_quotes
+"let g:delimitMate_expand_cr
+"let g:delimitMate_expand_space
+"let g:delimitMate_jump_expansion
+"let g:delimitMate_smart_quotes
+"let g:delimitMate_smart_matchpairs
+"let g:delimitMate_balance_matchpairs
+"let g:delimitMate_excluded_regions
+"let g:delimitMate_excluded_ft
+"let g:delimitMate_eol_marker
+"let g:delimitMate_apostrophes
+
+"""" CtrlP - Interactive search for files
+let g:ctrlp_use_caching = 1
+let g:ctrlp_cache_dir = $HOME.'/.cache/ctrlp'
+let g:ctrlp_clear_cache_on_exit = 0
+let g:ctrlp_open_new_file = 't'
+let g:ctrlp_switch_buffer = 'ETvh'
+let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard']
+
+"""" DragVisuals - Visual Drag settings
+"" Mappings
+vmap  <expr>  <LEFT>   DVB_Drag('left')
+vmap  <expr>  <RIGHT>  DVB_Drag('right')
+vmap  <expr>  <DOWN>   DVB_Drag('down')
+vmap  <expr>  <UP>     DVB_Drag('up')
+vmap  <expr>  D        DVB_Duplicate()
+
+"" Settings
+" Remove any introduced trailing whitespace after moving...
+let g:DVB_TrimWS = 1
+
+
+"""" Fugitive Plugin
+" Auto open QuickFix window when grep'ing
+autocmd QuickFixCmdPost *grep* cwindow
+
+
+"""" Gundo - Undo tree manager
+"" Mappings
+nnoremap <F5> :GundoToggle<CR>
+
+"" Settings
+"let g:gundo_width = 45
+"let g:gundo_preview_bottom = 25
+let g:gundo_preview_height = 30
+"let g:gundo_right = 0
+"let g:gundo_map_move_older = "j"
+"let g:gundo_map_move_newer = "k"
+"let g:gundo_help = 1
+"let g:gundo_disable = 0
+"let g:gundo_close_on_revert = 0
+"let g:gundo_preview_statusline
+"let g:gundo_tree_statusline
+let g:gundo_auto_preview = 1
+"let g:gundo_playback_delay = 60
+
+
+"""" Sessions - Vim Session Manager
+" See :mksession and xolox bundle
+
+"" Settings
+let g:session_directory = $VIMBACKUP
+" Options: 'prompt', 'yes', 'no'
+let g:session_autosave = 'yes'
+let g:session_autosave_periodic = 10
+let g:session_default_overwrite = 1
+let g:session_extension = '.vim'
+let g:session_autoload = 'no'
+
+" Can remove session options - see `:set sessionoptions`
+" set sessionoptions-=tabpages
+let g:session_default_name = 'session'
+let g:session_verbose_messages = 1
+let g:session_default_to_last = 1
+"let g:session_persist_globals = []
+let g:session_restart_environment = 1
+let g:session_command_aliases = 1
+"let g:session_menu
+"let g:loaded_session
+
+
+"""" TypeScript-tools
+autocmd BufRead,BufNewFile *.ts setlocal filetype=typescript
+"set rtp+=/typescript-tools.vim/
+
+" Defaults to [ 'tss' ]
+"let g:TSS = [ 'nodejs', '~/ui/node_modules/tss' ]
+
+
+"""" NERDTree
+" Open NERDTree
+nnoremap <F6> :NERDTreeToggle<CR>
+nnoremap <S-F6> :NERDTreeToggle ~/ui/app<CR>
+
+
+"""" Python (PyMode) - Refactoring tools
+"" See .vimrc.python
+
+
+"""" Ultisnips - Not UtilSnips or UtilsSnips
+let g:UltiSnipsListSnippets = '<F3>'
+let g:UltiSnipsExpandTrigger = '<c-g>'
+"inoremap <C-g> UltiSnips#ExpandSnippet
+
+"let g:UltiSnipsJumpBackwardTrigger = '<c-p>'
+"inoremap <C-j> UltiSnips#JumpBackwards
+
+"let g:UltiSnipsJumpForwardTrigger = '<c-n>'
+"inoremap <C-k> UltiSnips#JumpForward
+
+let g:UltiSnipsEditSplit = 'context'
+let g:UltiSnipsSnippetDirectories = [ 'UltiSnips' ]
+let g:UltiSnipsSnippetDirectories = [
+            \ 'UltiSnips',
+            \ './.vim/bundle/angular-vim-snippets/UltiSnips',
+            \ 'bundle/vim-snippets/UltiSnips'
+            \ ]
+
+
+"""" YouCompleteMe (ycm) - enabled as a bundle
+" https://github.com/Valloric/YouCompleteMe
+
+" Settings - Commentted out ones are default unless otherwise stated
+let g:ycm_min_num_of_chars_for_completion = 2
+let g:ycm_min_num_identifier_candidate_chars = 0
+let g:ycm_auto_trigger = 1
+let g:ycm_filetype_whitelist = { '*': 1 }
+let g:ycm_filetype_blacklist = {
+            \ 'tagbar' : 1,
+            \ 'qf' : 1,
+            \ 'notes' : 1,
+            \ 'markdown' : 0,
+            \ 'unite' : 1,
+            \ 'text' : 1,
+            \ 'vimwiki' : 1,
+            \ 'pandoc' : 1
+            \}
+let g:ycm_filetype_specific_completion_to_disable = {}
+let g:ycm_show_diagnostics_ui = 1
+let g:ycm_error_symbol = '>>'
+let g:ycm_enable_diagnostic_signs = 1
+let g:ycm_enable_diagnostic_highlighting = 1
+let g:ycm_echo_current_diagnostic = 1
+let g:ycm_always_populate_location_list = 0
+let g:ycm_open_loclist_on_ycm_diags = 1
+let g:ycm_allow_changing_updatetime = 1
+let g:ycm_complete_in_comments = 1
+let g:ycm_complete_in_strings = 1
+let g:ycm_collect_identifiers_from_comments_and_strings = 0
+let g:ycm_collect_identifiers_from_tags_files = 0
+let g:ycm_seed_identifiers_with_syntax = 0
+let g:ycm_extra_conf_vim_data = []
+let g:ycm_path_to_python_interpreter = ''
+let g:ycm_server_use_vim_stdout = 0
+let g:ycm_server_keep_logfiles = 0
+let g:ycm_server_log_level = 'info'
+let g:ycm_csharp_server_port = 2000
+let g:ycm_auto_start_csharp_server = 1
+let g:ycm_auto_stop_csharp_server = 1
+let g:ycm_add_preview_to_completeopt = 0
+let g:ycm_autoclose_preview_window_after_completion = 0  " Set to 1
+let g:ycm_autoclose_preview_window_after_insertion = 0
+let g:ycm_max_diagnostics_to_display = 30
+let g:ycm_key_list_select_completion=['<TAB>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<S-TAB>', '<Up>']
+let g:ycm_key_invoke_completion = '<C-Space>'
+let g:ycm_key_detailed_diagnostics = '<leader>d'
+let g:ycm_global_ycm_extra_conf = ''
+let g:ycm_confirm_extra_conf = 1
+let g:ycm_extra_conf_globlist = []
+let g:ycm_filepath_completion_use_working_dir = 0
+let g:ycm_semantic_triggers =  {
+      \   'c' : ['->', '.'],
+      \   'objc' : ['->', '.'],
+      \   'ocaml' : ['.', '#'],
+      \   'cpp,objcpp' : ['->', '.', '::'],
+      \   'perl' : ['->'],
+      \   'php' : ['->', '::'],
+      \   'cs,java,javascript,d,vim,python,perl6,scala,vb,elixir,go,typescript' : ['.'],
+      \   'ruby' : ['.', '::'],
+      \   'lua' : ['.', ':'],
+      \   'erlang' : [':'],
+      \ }
+
+let g:ycm_cache_omnifunc = 1
+let g:ycm_use_ultisnips_completer = 1
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" End
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

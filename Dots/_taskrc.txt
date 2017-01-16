@@ -1,0 +1,40 @@
+# [Created by task 2.2.0 3/10/2016 14:26:21]
+# Taskwarrior program configuration file.
+# For more documentation, see http://taskwarrior.org or try 'man task', 'man task-faq',
+# 'man task-tutorial', 'man task-color', 'man task-sync' or 'man taskrc'
+
+# Here is an example of entries that use the default, override and blank values
+#   variable=foo   -- By specifying a value, this overrides the default
+#   variable=      -- By specifying no value, this means no default
+#   #variable=foo  -- By commenting out the line, or deleting it, this uses the default
+
+# Use the command 'task show' to see all defaults and overrides
+
+#### Files
+data.location=~/.task
+
+# Color theme (uncomment one to use)
+#include /usr/share/task/light-16.theme
+#include /usr/share/task/light-256.theme
+#include /usr/share/task/dark-16.theme
+#include /usr/share/task/dark-256.theme
+#include /usr/share/task/dark-red-256.theme
+#include /usr/share/task/dark-green-256.theme
+#include /usr/share/task/dark-blue-256.theme
+#include /usr/share/task/dark-violets-256.theme
+#include /usr/share/task/dark-yellow-green.theme
+#include /usr/share/task/dark-gray-256.theme
+
+#### Config for inthe.am server
+taskd.certificate=~/.sshkeys/taskwarrior/intheam.private.cert.pem
+taskd.key=~/.sshkeys/taskwarrior/intheam.private.key.pem
+taskd.ca=~/.sshkeys/taskwarrior/intheam.server.cert.pem
+taskd.server=taskwarrior.inthe.am:53589
+taskd.credentials=inthe_am/tgoldie/fb45ca75-e748-4b2a-a519-f120908e40fb
+taskd.trust=ignore hostname
+
+#### Configuration
+regex=on
+report.topo.description=List topo project
+report.topo.columns=status,description
+report.topo.filter=status:pending and project:topo

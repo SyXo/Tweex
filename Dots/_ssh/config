@@ -1,0 +1,55 @@
+# vim: ft=sshconfig
+Host beeryard beeryard.* beeryardspare ingress.steeleye.com
+    PasswordAuthentication no
+    IdentityFile ~/.sshkeys/beeryard_key
+
+Host *.sc.steeleye.com *.steeleye.com 172.17.*
+    #Only allow SSH 2
+    Protocol 2
+    #IdentityFile ~/.ssh/steeleye_key
+    IdentityFile ~/.ssh/cldo-sioss-rsa-4096
+    StrictHostKeyChecking no
+    UserKnownHostsFile /dev/null
+    ForwardX11 yes
+    ServerAliveInterval 30
+
+Host github.com
+    HostName github.com
+    User git
+    Protocol 2
+
+    # For SIOS repos
+    #IdentityFile ~/.ssh/steeleye_key
+
+    # For beeryardtech repos
+    IdentityFile ~/.sshkeys/beeryard_key
+
+    StrictHostKeyChecking no
+    ForwardX11 no
+
+Host bitbucket.org
+    HostName bitbucket.org
+    User git
+    Protocol 2
+    IdentityFile ~/.sshkeys/beeryard_wp
+    StrictHostKeyChecking no
+    ForwardX11 no
+
+Host cellspot.router 192.168.29.1
+    user suadmin
+    Protocol 2
+
+    StrictHostKeyChecking no
+    ForwardX11 no
+
+    # Which ID file to use. Stored in encfs vol
+    IdentityFile ~/.sshkeys/beeryard_key
+
+    ServerAliveInterval 30
+    ServerAliveCountMax 240
+    ServerAliveCountMax 240
+
+Host ng-v*.sc.steeleye.com
+    #Hostname=ng-v*.sc.steeleye.com
+    ForwardX11 no
+    IdentityFile ~/.ssh/cldo-sioss-rsa-4096

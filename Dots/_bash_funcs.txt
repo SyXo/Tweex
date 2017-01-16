@@ -1,0 +1,157 @@
+#!/bin/bash
+###############################################################################
+# Name: .bashrc_funcs
+# Author: Travis Goldie
+# Date: January 2015
+# Purpose: Functions for the bash terminal
+#  These should be used in CLI. For scripts see `helpers.sh`
+###############################################################################
+#Tests if string ($1) contains the substring ($2)
+contains ()
+{
+    [[ $# < 2 ]] && echo "Usage: contains \$string \$substring" >&2
+    string=$1 ; substring=$2
+    if test "${string#*$substring}" != "$string" ; then
+        return 0    # $substring is in $string
+    else
+        return 1    # $substring is not in $string
+    fi
+}
+
+#Case insensitive test if string ($1) contains the substring ($2)
+icontains ()
+{
+    str=$( echo $1 | tr '[:upper:]' '[:lower:]' )
+    substr=$( echo $2 | tr '[:upper:]' '[:lower:]' )
+    return $( contains $str $substr )
+}
+
+# Print out colors with there names
+colors ()
+{
+    for i in {0..255} ; do
+        printf "\x1b[38;5;${i}mcolor${i}\n"
+    done
+}
+
+# Replace resolv.conf file with SIOS's version
+cpresolv ()
+{
+	initFiles=$DROPBOX/repos/beeryardtech/init/files/
+	if [[ $1 == -r ]]; then
+		echo "Using home resolv.conf"
+		sudo cp $initFiles/resolv.conf.home /etc/resolv.conf
+		return $?
+    else
+        echo "Using SIOS resolv.conf"
+        sudo cp $initFiles/resolv.conf.sios /etc/resolv.conf
+		return $?
+	fi
+}
+
+# Checks for conflict files in Dropbox
+dbconflict ()
+{
+    dump="$HOME/tmp/dbdump"
+    tmp=$( mktemp )
+    mkdir -p "$dump"
+    echo "Find list in $tmp" ; echo
+    find $DROPBOX -iname "*\ \(* conflicted\ *" -o -iname "*\(Case Conflict*" -o -iname "*\(Selective Sync Conflict\)*" > $tmp
+
+    while read val ; do
+        valNew=$(echo $val | sed  's/\//-/g')
+        echo "Moving $val to $dump"
+        mv "$val" "$dump/$valNew"
+    done < $tmp
+}
+
+# Debug wrapper for bash functions
+dbg ()
+{
+	set -xv ; eval $@ ; set +xv
+}
+
+# Disable <C-s> before running cmd and re-enable it afterward
+disable_ctrl_s()
+{
+    local STTYOPTS="$(stty --save)"
+    stty stop '' -ixoff
+    command "$@"
+    stty "$STTYOPTS"
+}
+
+#Store password to a variable. Does not echo text like a normal pwd prompt
+getpwd()
+{
+    local out=
+    local stty_orig=
+
+    [[ -z $1 ]] && out=$1 || out="Password: "
+
+    # Save off old stty config
+	stty_orig=$( stty -g )
+    stty -echo
+
+    # Read input
+    read -p "$out" pass
+
+    # Replace with new config, and echo result
+    stty $stty_orig
+    echo "$pass"
+}
+
+
+#Makes reading markdown file easier
+_mdown ()
+{
+    if [[ $1 == "-b" ]] ; then
+        in=$2 ; out="html" ; reader="lynx -stdin"
+    elif [[ $1 == "-m" ]] ; then
+        in=$2 ; out="man" ; reader="man -l -"
+    else
+        in=$1 ; out="man" ; reader="man -l -"
+    fi
+    cmd="pandoc -s -f markdown -t $out $in | $reader"
+    echo $cmd ; eval $cmd
+}
+
+mdown()
+{
+    USAGE="Usage: Reads Markdown readme's. \n
+            \$1 - File to read \n
+            -b  - Use browser\n
+            -h  - Show this message and return\n
+            -m  - Read using man pages (default)"
+    if [[ -z $1 || $1 == "-h" ]] ; then
+        echo -e $USAGE && return
+    fi
+    _mdown $@
+}
+
+#Mount steeleye resources
+mountst ()
+{
+	unset ops_1 mountpt pass stty_orig
+	sudo echo -n #go ahead and get sudo cert
+	#get password. use stty to not show password on screen
+	stty_orig=$( stty -g ) ; stty -echo ; read -p "AD Password: " pass ; stty $stty_orig
+
+	ops_1="nounix,user,uid=1000,gid=1000,username=$USER,password=$pass"
+
+    # smbfs has been replaced with cifs
+	cmd="sudo mount -o $ops_1 -t cifs"
+
+	mountpt=/mnt/steel
+    if ! mountpoint -q $mountpt ; then
+        sudo mkdir -p $mountpt
+        $cmd //hancock.sc.steeleye.com/steel/ $mountpt
+    fi
+
+    mountpt=/mnt/$USER
+    if ! mountpoint -q $mountpt ; then
+        sudo mkdir -p $mountpt
+        $cmd //hancock.sc.steeleye.com/steel/steeleye/$USER $mountpt
+    fi
+
+	echo "" #add a new line for the fun of it
+}

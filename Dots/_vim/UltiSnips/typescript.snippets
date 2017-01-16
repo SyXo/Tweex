@@ -1,0 +1,21 @@
+###############################################################################
+# vim: tabstop=4:shiftwidth=4:expandtab
+# Copyright (c) 2016 Beeryard Technology All rights reserved.
+###############################################################################
+global !p
+def year():
+    import datetime
+    return datetime.datetime.now().year
+# end year()
+
+endglobal
+
+snippet byhead "Beeryad header with current year"
+/*******************************************************************************
+ * vim: tabstop=4:shiftwidth=4:expandtab
+ * Copyright (c) `!p snip.rv = year()` Beeryard Technology All rights reserved.
+ *******************************************************************************/
+'use strict';
+
+$0
+endsnippet

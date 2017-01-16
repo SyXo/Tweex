@@ -1,0 +1,18 @@
+###############################################################################
+# Author: Travis Goldie
+# Date: January 2012
+###############################################################################
+#-------------------------------------------------------------
+# Account details for Steeleye.com account
+#-------------------------------------------------------------
+source ~/.muttrc.config
+
+## IMAP and SMTP config
+set imap_user = "travis.goldie@steeleye.com"
+set imap_pass = "eocnlrgitscwdqfa"
+set smtp_url = "smtp://travis.goldie@steeleye.com@smtp.gmail.com:587/"
+set smtp_pass = "eocnlrgitscwdqfa"
+
+## Mail config
+set from = "travis.goldie@steeleye.com"
+set realname = "Travis Goldie"

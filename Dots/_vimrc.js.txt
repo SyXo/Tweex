@@ -1,0 +1,111 @@
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vim: ft=vim
+" Name: .vimrc.js
+" Description: Config for JavaScript language and plugins
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""" Autocmds Headers
+autocmd BufRead *.js exe "set regexpengine=1"
+autocmd BufRead *.js exe "syntax enable"
+
+" Update for your system!
+let toolsDir = "/home/tgoldie/ui/utils/"
+
+" Note - %:t gives the basename of current file. See filename-modifiers
+" For JS file headers
+autocmd bufnewfile *.js exe "so " . toolsDir . "js_header.txt"
+autocmd bufnewfile *.js exe "1," . 8 . "g/Creation Date:.*/s//Creation Date: " . strftime("%d %b %Y")
+
+" For SCSS file headers
+autocmd bufnewfile *.scss exe "so " . toolsDir . "scss_header.txt"
+autocmd bufnewfile *.scss exe "1," . 8 . "g/Creation Date:.*/s//Creation Date: " . strftime("%d %b %Y")
+
+
+"""" vim-angular plugin
+" See https://github.com/burnettk/vim-angular
+
+let g:angular_jasmine_version = 1
+let g:angular_source_directory = '/home/tgoldie/ui/app/scripts'
+let g:angular_test_directory = '/home/tgoldie/ui/test/spec'
+
+" Dirs and files to ignore when using `gf` - jump to file
+let g:angular_find_ignore = ['build/', 'dist/']
+
+" File convention - 'camelcased' | 'titlecased'
+let g:angular_filename_convention = 'titlecased'
+
+"""" Google Script - (gs, gas)
+autocmd Filetype grads set filetype=javascript
+autocmd BufNewFile,BufRead *.gs set syntax=javascript
+
+
+"""" Pangloss/vim-javascript Settings
+" Highlighting for both JSDoc and NGDoc
+let g:javascript_plugin_jsdoc = 1
+let g:javascript_plugin_ngdoc = 1
+
+" If conceal is true, then hide stuff with sympols
+"let g:javascript_conceal = 1
+"let g:javascript_conceal_function       = "Æ"
+"let g:javascript_conceal_null           = "Ã¸"
+"let g:javascript_conceal_this           = "@"
+"let g:javascript_conceal_return         = "â"
+"let g:javascript_conceal_undefined      = "Â¿"
+"let g:javascript_conceal_NaN            = "â"
+"let g:javascript_conceal_prototype      = "Â¶"
+"let g:javascript_conceal_static         = "â¢"
+"let g:javascript_conceal_super          = "Î©"
+"let g:javascript_conceal_arrow_function = "â"
+
+
+"""" othree/javascript-libraries-syntax Settings
+" Setup which libs are in use
+let g:used_javascript_libs = 'angularjs,angularui,angularuirouter,jasmine,jquery,underscore,d3,highcarts'
+
+
+"""" Tern - Show argument hints - ''
+let tern_show_argument_hints = 'on_move'
+
+autocmd Filetype javascript nnoremap <M-d> :TernDef<CR>
+autocmd Filetype javascript nnoremap <M-r> :TernRename<CR>
+autocmd Filetype javascript nnoremap <M-t> :TernRefs<CR>
+
+
+"""" SuperTab
+let g:SuperTabContextDefaultCompletionType = "<c-n>"
+let g:SuperTabDefaultCompletionType = "<c-n>"
+
+
+"""" Syntastic
+let g:syntastic_check_on_open = 1
+
+" CSS Lint
+let g:syntastic_csslint_options = ''
+let g:syntastic_css_checkers = [ 'csslint' ]
+let g:syntastic_scss_checkers = [ 'sass' ]
+
+" HTML Attribute checking - ignore custom angularjs directives
+let g:syntastic_html_tidy_ignore_errors = ['proprietary attribute "stc-']
+
+" JS Lint
+let g:syntastic_javascript_checkers = [ 'jshint' ]
+
+" JSON Lint
+let g:syntastic_json_checkers = [ 'jsonlint' ]
+
+" TS Lint
+let g:syntastic_typescript_checkers = [ 'tsuquyomi' ]
+
+"""" VIM XML/HTML Plugins
+" Disable delimitMate for xml, html files
+"let delimitMate_excluded_ft = 'xml,html'
+
+" Changes when autoclosing - Default type literal '>'
+"let xml_tag_completion_map = '<c-n>'
+
+" Add support for xsl files
+let xml_tag_syntax_prefixes = 'html\|xml\|xsl\|docbk'
+
+" Close tags like <br> as <br />
+let xml_use_xhtml = 1
+
+

@@ -1,0 +1,53 @@
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vim: ft=vim:
+" Name: .vimrc.plugins
+" Author: Travis Goldie
+" Description: Plugins managed by Vundle
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" XXX Start and end with setting filetype
+filetype off
+
+" set the runtime path to include Vundle and initialize
+" Change default bundle location - saves all the problems with Dropbox
+set rtp+=~/.bundle/vundle.git/
+call vundle#begin('~/.bundle/')
+
+let g:vundle_default_git_proto = 'git'
+
+" Included Bundles
+" First let Vundle handle itself
+Plugin 'gmarik/vundle.git'
+
+" Tmux navigator - Move seamlessly between tmux/vim panes
+Plugin 'christoomey/vim-tmux-navigator'
+
+" Python refactoring tools
+Plugin 'klen/python-mode'
+
+" Manage undo tree
+Plugin 'sjl/gundo.vim'
+
+" Comment out code
+Plugin 'scrooloose/nerdcommenter'
+
+" Support for autoending code blocks
+Plugin 'tpope/vim-endwise'
+
+" Git wrapper
+Plugin 'tpope/vim-fugitive'
+
+" Allows repeating of plugin commands
+Plugin 'tpope/vim-repeat'
+
+" Surrounds words with quotes or parenthesis
+Plugin 'tpope/vim-surround'
+
+" Pairs of keys
+Plugin 'tpope/vim-unimpaired'
+
+" Vim session manager
+Plugin 'xolox/vim-misc'
+Plugin 'xolox/vim-session'
+
+call vundle#end()
+filetype plugin indent on

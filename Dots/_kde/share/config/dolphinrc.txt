@@ -1,0 +1,79 @@
+[AdditionalInfoDialog]
+Height 1080=289
+Width 1920=277
+
+[CompactMode]
+FontWeight=50
+
+[DetailsMode]
+FontWeight=50
+PreviewSize=32
+
+[DownloadDialog Settings]
+Height 1080=574
+Width 1920=1206
+
+[General]
+AutoExpandFolders=true
+BrowseThroughArchives=true
+EditableUrl=true
+FilterBar=true
+ModifiedStartupSettings=false
+ShowCopyMoveMenu=true
+ShowFullPath=true
+ShowSpaceInfo=true
+SplitView=true
+Version=200
+ViewPropsTimestamp=2014,9,6,16,33,38
+
+[IconsMode]
+FontWeight=50
+IconSize=48
+PreviewSize=128
+
+[KPropertiesDialog]
+Height 1050=372
+Height 1080=451
+Width 1680=362
+Width 1920=457
+
+[MainWindow]
+Height 1050=965
+Height 1080=1081
+Height 480=481
+Height 768=683
+Height 900=901
+MenuBar=Disabled
+State=AAAA/wAAAAD9AAAAAwAAAAAAAADmAAADwfwCAAAAAvsAAAAWAGYAbwBsAGQAZQByAHMARABvAGMAawAAAAAA/////wAAAAUA////+wAAABQAcABsAGEAYwBlAHMARABvAGMAawEAAAAmAAADwQAAAE4A////AAAAAQAAALIAAAPB/AIAAAAB+wAAABAAaQBuAGYAbwBEAG8AYwBrAQAAACYAAAPBAAABEQD///8AAAADAAAAAAAAAAD8AQAAAAH7AAAAGAB0AGUAcgBtAGkAbgBhAGwARABvAGMAawAAAAAA/////wAAAAUA////AAAF3AAAA8EAAAAEAAAABAAAAAgAAAAI/AAAAAEAAAACAAAAAQAAABYAbQBhAGkAbgBUAG8AbwBsAEIAYQByAQAAAAD/////AAAAAAAAAAA=
+ToolBarsMovable=Disabled
+Width 1024=1025
+Width 1366=1364
+Width 1440=1441
+Width 1680=1680
+Width 1920=1921
+Width 640=641
+
+[Open-with settings]
+CompletionMode=5
+History=dosbox
+
+[PreviewSettings]
+Plugins=directorythumbnail,imagethumbnail,jpegthumbnail
+
+[Search]
+ShowFacetsWidget=false
+What=FileName
+
+[SettingsDialog]
+Height 1080=535
+Height 768=564
+Height 900=372
+Width 1366=1060
+Width 1440=512
+Width 1920=837
+
+[ViewPropertiesDialog]
+Height 1080=446
+Height 900=446
+Width 1440=371
+Width 1920=371

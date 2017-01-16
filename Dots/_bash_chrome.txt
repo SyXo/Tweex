@@ -1,0 +1,6 @@
+#!/bin/bash
+###############################################################################
+# Author: Travis Goldie
+# Purpose: Aliases for the bash terminal
+###############################################################################
+export PATH=$PATH:~/Dropbox/repos/beeryardtech/dbcli/node_modules/.bin
