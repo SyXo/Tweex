@@ -1,0 +1,5 @@
+#BANNER
+#QUESTION:Would you like to install Steam (Game Store)?
+# Steam, the big daddy of online game stores, DRM included in everything
+catagory<:>message<:>Installing Steam (game store)
+catagory<:>package<:>steam

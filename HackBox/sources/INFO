@@ -1,0 +1,55 @@
+#############################################################
+# This is a simple info file describing the files in the folder
+#############################################################
+
+#    Each of the files in this folder is a .source file. Each .source file has a list of messages and commands to be executed with its included section. This means if the user picks graphics tools to be installed via the main interface it will grab the info from the graphicsTools.source file to know what to install. These files also contain comments. Lines starting with # are comments. Some of the files contain the same packages to be installed which may be viewed as redundant, and it is. This is for instances when the user wants only one section but not all sections. Some commands would be necessary for graphic design and also web design for example.
+####################
+# EXAMPLE NOTATION #
+####################
+# The below will install a package onto the system
+#catagory<:>package<:>packagename
+####################
+# The below command will remove a package installed on the system
+#catagory<:>rm-package<:>packagename
+####################
+# The below will install a local deb, the filename should not contain the .deb extension and should be stored in the unsupported packages folder
+#catagory<:>localdeb<:>filename<:>/path/to/check/exists
+####################
+# The below will run a bash command
+#catagory<:>command<:>bash-command --whatever
+####################
+# The below will add a ppa to the system repos
+#catagory<:>ppa<:>ppa:lolUser/software
+####################
+# The below will open port 9119 on the firewall to any computer without restriction, tcp only
+#catagory<:>open-port<:>9119
+####################
+# The below will open port 9119 on the firewall to other computers on the lan, tcp only
+#catagory<:>open-lan-port<:>9119
+####################
+# The below will add a repo to the system. It consists of a repo line and the location of the keyfile for the repo
+#catagory<:>deb-repo<:>deb https://myrepo.com/repos saucy main<:>https://myrepo.com/keys/myrepokey.pgp
+####################
+# The below will create a cron job on the system that will run as the root user
+#catagory<:>cron<:>cronFileName<:>cronFrequency<:>command
+# The cronFrequency can be any acceptable cron time format @hourly @daily @weekly @monthly @yearly or a specific
+# cron time. Example cron files might be found in /etc/cron.d/
+####################
+# The below will disable a launcher file on the system. You will still be able to use the launcher for mime
+# type associations.
+#catagory<:>disable-launcher<:>/usr/share/applications/programlauncher.desktop
+####################
+# The category section decides the install order of things. By default the categories and their order is as below.
+# 1. "interactive"
+# 2. "download"
+# 3. "pre"
+# 4. "main"
+# 5. "post"
+####################
+# By default all items with a category not listed above will be placed into the "main" category. Categories can be used with any type of entry. Here is some examples of the above package item with the different categories.
+####################
+#interactive<:>package<:>packagename
+#download<:>package<:>packagename
+#pre<:>package<:>packagename
+#main<:>package<:>packagename
+#post<:>package<:>packagename

@@ -1,0 +1,73 @@
+#BANNER
+#QUESTION:Would you like to install System Administrator Tools?
+# System Tools Source file
+# backup tools #
+catagory<:>message<:>Installing LuckyBackup (Backup Utility)(GUI for rsync)
+catagory<:>package<:>luckybackup
+catagory<:>message<:>Installing Back In Time (Backup Utility)
+catagory<:>package<:>backintime-gnome
+# remove other backup programs to avoid confusion
+catagory<:>rm-package<:>deja-dup
+# the below is dead, keeping for a bit in case it is revived, it eases managing grub
+#catagory<:>message<:>Installing Startup Manager
+#catagory<:>package<:>startupmanager
+# below tool is for cleanup of crap on the pc over time
+catagory<:>message<:>Installing Bleachbit (Clean up disk and write over old data)
+catagory<:>package<:>bleachbit
+# below is disk recovery tools
+catagory<:>message<:>Installing Testdisk (Disk Recovery Tool)
+catagory<:>package<:>testdisk
+catagory<:>message<:>Installing extundelete (File undelete tool)
+catagory<:>package<:>extundelete
+# partition management
+catagory<:>message<:>Installing Gparted (Disk Partition Tool)
+catagory<:>package<:>gparted
+# remote desktop tool
+catagory<:>message<:>Installing Vinagre (Remote Desktop Viewer)
+catagory<:>package<:>vinagre
+# super security tools for system security testing adminstration
+# most stuff I have tryed to setup for this section are really complicated so im not including much
+catagory<:>message<:>Installing samdump2 windows hash graber
+catagory<:>package<:>samdump2
+catagory<:>message<:>Installing john (brute force password cracker)
+catagory<:>package<:>john
+catagory<:>message<:>Installing nmap (Port Scanner)
+catagory<:>package<:>nmap
+catagory<:>message<:>Installing zenmap (GUI for nmap)
+catagory<:>package<:>zenmap
+# root kit detection
+catagory<:>message<:>Installing chkrootkit(checks the sysytem for rootkits)
+catagory<:>package<:>chkrootkit
+interactive<:>message<:>Installing rkhunter(checks the sysytem for rootkits)
+interactive<:>package<:>rkhunter
+# monitoring tools
+catagory<:>message<:>Installing glances (Quick system overview tool)
+catagory<:>package<:>glances
+catagory<:>message<:>Installing htop (CLI Task Manager)
+catagory<:>package<:>htop
+catagory<:>message<:>Installing iotop (CLI Disk I/O Manager)
+catagory<:>package<:>iotop
+# network monitoring tools
+catagory<:>message<:>Installing iftop (CLI network monitor)
+catagory<:>package<:>iftop
+catagory<:>message<:>Installing etherape (Graphical network monitor)
+catagory<:>package<:>etherape
+# install psensor, remove the autostart file
+catagory<:>message<:>Installing psensor (Graphing Temp Sensor Tool)
+catagory<:>package<:>psensor
+catagory<:>command<:>rm -f /etc/xdg/autostart/psensor.desktop
+# log file viewer
+catagory<:>message<:>Installing Log File Viewer (GUI Log file viewer)
+catagory<:>package<:>gnome-system-log
+# data gathering tools
+catagory<:>message<:>Installing FSlint
+catagory<:>package<:>fslint
+catagory<:>message<:>Installing Hardware Lister
+catagory<:>package<:>lshw-gtk
+catagory<:>message<:>Installing Hardware Info
+catagory<:>package<:>hardinfo
+catagory<:>message<:>Installing ncdu (CLI Disk Usage Analyzer)
+catagory<:>package<:>ncdu
+# stress test tools
+catagory<:>message<:>Installing stress (CLI system stress tool)
+catagory<:>package<:>stress
