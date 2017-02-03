@@ -1,0 +1,17 @@
+   ________      _    _            _    _                
+  /   /\   \    | |  | |          | |  | |                 
+ /   /  \   \   | |__| | __ _  ___| | _| |__   _____  __  
+|   /    \   |  |  __  |/ _` |/ __| |/ / '_ \ / _ \ \/ /  
+|  /      \  |  | |  | | (_| | (__|   <| |_) | (_) >  <  
+ \+--------+/   |_|  |_|\__,_|\___|_|\_\_.__/ \___/_/\_\ 
+  \________/   
+
+This is the HackBox Setup Program.
+
+To your left is the installer which will require your attention for the first part of installation. The installer will inform you when everything begins being fully automated.
+
+To switch between options you can use the tab key or you may be able to just click, depending on your system. Press the enter key to confirm your choice.
+
++----------------------------------------------------------+
+| Below this box the system will begin to show debug info. |
++----------------------------------------------------------+
